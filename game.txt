@@ -1,0 +1,97 @@
+import java.util.Scanner;
+
+public class TextAdventureGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to the Adventure Game!");
+        System.out.println("You find yourself in a mystical land. Your goal is to reach the treasure.");
+
+        while (true) {
+            System.out.println("\nWhat do you want to do?");
+            System.out.println("1. Enter the dark cave");
+            System.out.println("2. Cross the bridge");
+            System.out.println("3. Take the hidden path");
+
+            int choice = getUserChoice(scanner);
+
+            switch (choice) {
+                case 1:
+                    System.out.println("You enter the dark cave...");
+                    System.out.println("It's too dark to see anything. Do you want to light a torch?");
+                    System.out.println("1. Yes");
+                    System.out.println("2. No");
+
+                    int torchChoice = getUserChoice(scanner);
+
+                    if (torchChoice == 1) {
+                        System.out.println("With the torch, you find a hidden passage and reach the treasure!");
+                        endGame();
+                    } else {
+                        System.out.println("Without a light, you stumble in the darkness and get lost.");
+                        gameOver();
+                    }
+                    break;
+
+                case 2:
+                    System.out.println("You cross the old bridge...");
+                    System.out.println("Halfway across, the bridge starts to shake. What do you do?");
+                    System.out.println("1. Run to the other side");
+                    System.out.println("2. Try to steady the bridge");
+
+                    int bridgeChoice = getUserChoice(scanner);
+
+                    if (bridgeChoice == 1) {
+                        System.out.println("You make it to the other side safely and continue your journey.");
+                    } else {
+                        System.out.println("Your attempt to steady the bridge fails, and you fall into the river below.");
+                        gameOver();
+                    }
+                    break;
+
+                case 3:
+                    System.out.println("You take the hidden path...");
+                    System.out.println("The path leads to a dense forest. What do you want to do?");
+                    System.out.println("1. Navigate through the forest");
+                    System.out.println("2. Go back and choose another path");
+
+                    int forestChoice = getUserChoice(scanner);
+
+                    if (forestChoice == 1) {
+                        System.out.println("You successfully navigate the forest and discover a shortcut to the treasure!");
+                        endGame();
+                    } else {
+                        System.out.println("You decide to go back and choose a different path.");
+                    }
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Please choose again.");
+            }
+        }
+    }
+
+    private static int getUserChoice(Scanner scanner) {
+        int choice = 0;
+        while (true) {
+            try {
+                System.out.print("Enter your choice: ");
+                choice = Integer.parseInt(scanner.nextLine());
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a number.");
+            }
+        }
+        return choice;
+    }
+
+    private static void gameOver() {
+        System.out.println("Game over! You failed to complete the quest.");
+        System.exit(0);
+    }
+
+    private static void endGame() {
+        System.out.println("Congratulations! You have reached the treasure and completed the quest.");
+        System.exit(0);
+}
+}
